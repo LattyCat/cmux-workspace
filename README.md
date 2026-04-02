@@ -27,7 +27,7 @@
 ## セットアップ
 
 ```bash
-git clone https://github.com/<your-user>/cmux-workspace.git ~/app/cmux-workspace
+git clone https://github.com/LattyCat/cmux-workspace.git ~/app/cmux-workspace
 cd ~/app/cmux-workspace
 chmod +x setup.sh
 ./setup.sh
