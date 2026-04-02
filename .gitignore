@@ -1,0 +1,17 @@
+*.bak
+.DS_Store
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# Dependencies
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp

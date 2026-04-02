@@ -1,0 +1,74 @@
+{
+  "commands": [
+    {
+      "name": "AI Dev Workspace",
+      "description": "Terminal workspace with file tree, git, and MD preview for AI coding agents",
+      "keywords": ["dev", "ai", "workspace", "claude", "gemini", "codex"],
+      "workspace": "ai-dev",
+      "cwd": ".",
+      "layout": {
+        "type": "split",
+        "direction": "horizontal",
+        "size": 0.25,
+        "children": [
+          {
+            "type": "split",
+            "direction": "vertical",
+            "size": 0.6,
+            "children": [
+              {
+                "type": "pane",
+                "surfaces": [
+                  {
+                    "name": "File Tree",
+                    "command": "yazi",
+                    "focus": true
+                  },
+                  {
+                    "name": "MD Preview",
+                    "command": "~/.config/cmux/scripts/md-preview.sh"
+                  }
+                ]
+              },
+              {
+                "type": "pane",
+                "surfaces": [
+                  {
+                    "name": "Git",
+                    "command": "lazygit"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "direction": "vertical",
+            "size": 0.8,
+            "children": [
+              {
+                "type": "pane",
+                "surfaces": [
+                  {
+                    "name": "AI Terminal",
+                    "command": "zsh",
+                    "focus": true
+                  }
+                ]
+              },
+              {
+                "type": "pane",
+                "surfaces": [
+                  {
+                    "name": "Shell",
+                    "command": "zsh"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

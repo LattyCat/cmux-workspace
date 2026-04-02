@@ -1,0 +1,10 @@
+# Yazi config for narrow cmux pane
+# Disables parent/preview columns to maximize file list width
+
+[mgr]
+ratio = [0, 1, 0]
+sort_by = "natural"
+sort_dir_first = true
+show_hidden = true
+linemode = "none"
+title_format = "Yazi: {cwd}"
