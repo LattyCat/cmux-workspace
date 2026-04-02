@@ -35,15 +35,11 @@ chmod +x setup.sh
 
 ## 使い方
 
-1. `cmux.json` をプロジェクトルートにシンボリックリンクします：
+`setup.sh` を実行すると、`cmux.json` が `~/.config/cmux/cmux.json` にリンクされ、コマンドパレットからすぐに使えます。
 
-```bash
-ln -sf ~/app/cmux-workspace/cmux.json /path/to/project/cmux.json
-```
+1. cmux を開き、`Cmd+J` を押して **AI Dev Workspace** を選択します
 
-2. cmux を開き、`Cmd+J` を押して **AI Dev Workspace** を選択します
-
-3. AIターミナルのペインで、使いたいエージェントを起動します：
+2. AIターミナルのペインで、使いたいエージェントを起動します：
 
 ```bash
 claude              # Claude Code

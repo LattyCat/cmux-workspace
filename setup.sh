@@ -77,6 +77,9 @@ fi
 echo ""
 echo "[2/4] Symlink configs"
 
+# cmux quick commands (Cmd+J)
+symlink "$REPO_DIR/cmux.json" "$HOME/.config/cmux/cmux.json"
+
 # cmux scripts
 symlink "$REPO_DIR/scripts/md-preview.sh" "$HOME/.config/cmux/scripts/md-preview.sh"
 chmod +x "$REPO_DIR/scripts/md-preview.sh"
