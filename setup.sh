@@ -22,7 +22,9 @@ check_brew_formula() {
 check_brew_cask() {
   if ! brew list --cask "$1" &>/dev/null; then
     echo "  Installing $1 (cask)..."
-    brew install --cask "$1"
+    if ! brew install --cask "$1" 2>&1; then
+      echo "  SKIP: $1 already exists or install failed, continuing..."
+    fi
   else
     echo "  OK: $1 (cask)"
   fi
@@ -62,14 +64,11 @@ check_brew_formula "lazygit"
 check_brew_formula "glow"
 check_brew_formula "watchexec"
 
-# cmux CLI symlink
-if [ ! -e /usr/local/bin/cmux ] && [ ! -L /usr/local/bin/cmux ]; then
-  if [ -x "/Applications/cmux.app/Contents/Resources/bin/cmux" ]; then
-    echo "  Creating cmux CLI symlink..."
-    sudo ln -sf "/Applications/cmux.app/Contents/Resources/bin/cmux" /usr/local/bin/cmux
-  else
-    echo "  SKIP: cmux binary not found at /Applications/cmux.app" >&2
-  fi
+# cmux CLI: Homebrew cask creates the symlink via /opt/homebrew/bin/cmux
+if command -v cmux &>/dev/null; then
+  echo "  OK: cmux CLI is available at $(command -v cmux)"
+else
+  echo "  WARN: cmux CLI not found in PATH. You may need to add Homebrew bin to your PATH." >&2
 fi
 
 # --------------------------------------------------
@@ -113,7 +112,12 @@ echo ""
 echo "[4/4] Optional settings"
 
 if ! git config --global --get core.fsmonitor &>/dev/null; then
-  read -p "  Enable git fsmonitor for faster git status? [y/N]: " ENABLE_FSMON
+  if [ -t 0 ]; then
+    read -p "  Enable git fsmonitor for faster git status? [y/N]: " ENABLE_FSMON
+  else
+    echo "  SKIP: non-interactive terminal, skipping fsmonitor prompt"
+    ENABLE_FSMON="N"
+  fi
   if [[ "$ENABLE_FSMON" =~ ^[Yy]$ ]]; then
     git config --global core.fsmonitor true
     echo "  OK: git core.fsmonitor enabled"
